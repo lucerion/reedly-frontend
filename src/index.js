@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import Layout from './containers/Layout';
 
-import './styles/app.css';
+import './app.css';
 
-export class App extends Component {
-  render() {
-    return <div></div>;
-  }
-}
+const App = () => (
+  <Layout />
+);
 
 ReactDOM.render(<App />, document.getElementById('app'));

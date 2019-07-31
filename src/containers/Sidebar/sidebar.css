@@ -1,0 +1,4 @@
+.sidebar,
+.sidebar .content {
+  width: var(--sidebar-width);
+}
