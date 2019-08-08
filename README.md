@@ -10,7 +10,9 @@ Reedly UI
 
 ## Usage
 
-    yarn start
+  * copy `.env.example` to `.env`. Edit `.env`
+
+  * run `yarn start`
 
 
 ## Linter
