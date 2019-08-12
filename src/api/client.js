@@ -1,5 +1,8 @@
-import { ApolloClient } from 'apollo-client';
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 
-const Client = () => new ApolloClient({ uri: process.env.SERVER });
+const client = new ApolloClient({
+  link: new HttpLink({ uri: process.env.SERVER }),
+  cache: new InMemoryCache(),
+});
 
-export default Client;
+export default client;

@@ -2,3 +2,11 @@
 .sidebar .content {
   width: var(--sidebar-width);
 }
+
+.sidebar .menu {
+  padding: 15px 0 0 15px;
+}
+
+.sidebar .submenu {
+  padding: 0 0 0 15px;
+}

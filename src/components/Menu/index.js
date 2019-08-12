@@ -1,27 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from './MenuItem';
+import Typography from '@material-ui/core/Typography';
 
-const Menu = ({ items = [] }) => {
-  const renderItems = (items) => items.map((text, index) => renderItem(index, text));
+const Menu = ({ title, items, className, subMenuClassName }) => {
+  const header = <Typography component="div" variant="subtitle1">{title}</Typography>;
 
-  const renderItem = (key, text) => (
-    <ListItem key={key}>
-      <ListItemText primary={text} />
-    </ListItem>
-  );
+  const renderItems = (items) => items.map(({ id, name, items }) => (
+    <MenuItem name={name} items={items} key={id} subMenuClassName={subMenuClassName} />
+  ));
 
   return (
-    <List>
+    <List subheader={header} className={className}>
       {renderItems(items)}
     </List>
   );
 };
 
+const itemPropType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+});
+
 Menu.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string),
+  className: PropTypes.string,
+  subMenuClassName: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf(itemPropType),
+    })
+  ),
 };
 
 export default Menu;
