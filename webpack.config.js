@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const DotEnvPlugin = require('dotenv-webpack');
 
 module.exports = {
   module: {
@@ -18,9 +18,14 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    new HTMLWebpackPlugin({
       template: './src/index.html',
     }),
-    new Dotenv(),
+    new DotEnvPlugin(),
   ],
+  devServer: {
+    proxy: {
+      '/api': process.env.SERVER || 'http://localhost:3000',
+    },
+  },
 };
