@@ -6,16 +6,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import SubMenuItem from './SubMenuItem';
+import DropdownMenuItem from './DropdownMenuItem';
 
-const SubMenu = ({ title, items, className }) => {
+const DropDownMenu = ({ title, items, className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
-  const renderItems = (items) => items.map(({ id, name }) => (
-    <SubMenuItem name={name} key={id} />
-  ));
+  const renderItems = (items) => items.map(({ id, title }) => <DropdownMenuItem title={title} key={id} />);
 
   const renderExpandIcon = (isOpen) => isOpen ? <ExpandLess /> : <ExpandMore />;
 
@@ -34,15 +32,15 @@ const SubMenu = ({ title, items, className }) => {
   );
 };
 
-SubMenu.propTypes = {
+DropDownMenu.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
     })
   ),
 };
 
-export default SubMenu;
+export default DropDownMenu;

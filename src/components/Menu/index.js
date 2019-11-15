@@ -4,12 +4,12 @@ import List from '@material-ui/core/List';
 import MenuItem from './MenuItem';
 import Typography from '@material-ui/core/Typography';
 
-const Menu = ({ title, items, className, subMenuClassName }) => {
+const Menu = ({ title, items, className, renderMenuItem }) => {
   const header = <Typography component="div" variant="subtitle1">{title}</Typography>;
 
-  const renderItems = (items) => items.map(({ id, name, items }) => (
-    <MenuItem name={name} items={items} key={id} subMenuClassName={subMenuClassName} />
-  ));
+  const renderItem = (item) => <MenuItem title={item.title} key={item.id} />;
+
+  const renderItems = (items) => items.map((item) => (renderMenuItem && renderMenuItem(item)) || renderItem(item));
 
   return (
     <List subheader={header} className={className}>
@@ -20,20 +20,20 @@ const Menu = ({ title, items, className, subMenuClassName }) => {
 
 const itemPropType = PropTypes.shape({
   id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string,
 });
 
 Menu.propTypes = {
-  className: PropTypes.string,
-  subMenuClassName: PropTypes.string,
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      title: PropTypes.string.isRequired,
       items: PropTypes.arrayOf(itemPropType),
     })
   ),
+  className: PropTypes.string,
+  renderMenuItem: PropTypes.func,
 };
 
 export default Menu;
