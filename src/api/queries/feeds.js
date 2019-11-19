@@ -23,4 +23,4 @@ const FEEDS_QUERY = gql`
   ${FEED_FIELDS}
 `;
 
-export { FEEDS_QUERY };
+export { FEED_FIELDS, FEEDS_QUERY };

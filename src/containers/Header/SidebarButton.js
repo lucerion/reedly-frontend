@@ -1,16 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { AppContext } from '../../contexts';
 
-const SidebarButton = ({ onClick }) => (
-  <IconButton edge="start" onClick={onClick}>
-    <MenuIcon />
-  </IconButton>
+const SidebarButton = () => (
+  <AppContext.Consumer>
+    {({ toggleSidebar }) => (
+      <IconButton edge="start" onClick={toggleSidebar}>
+        <MenuIcon />
+      </IconButton>
+    )}
+  </AppContext.Consumer>
 );
-
-SidebarButton.propTypes = {
-  onClick: PropTypes.func,
-};
 
 export default SidebarButton;

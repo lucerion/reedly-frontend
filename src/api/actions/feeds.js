@@ -1,17 +1,13 @@
-import { useQuery } from '@apollo/react-hooks';
-import { FEEDS_QUERY } from '../queries/feeds';
-import { groupByCategory } from '../helpers';
+import { FEEDS_QUERY } from '../queries';
 
-const getFeeds = () => {
+const getFeeds = async ({ client }) => {
   const {
     data: {
-      feeds = [],
+      feeds,
     },
-  } = useQuery(FEEDS_QUERY);
+  } = await client.query({ query: FEEDS_QUERY });
 
   return feeds;
 };
 
-const getFeedsGroupedByCategory = () => groupByCategory(getFeeds());
-
-export { getFeedsGroupedByCategory };
+export { getFeeds };

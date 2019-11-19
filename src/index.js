@@ -1,15 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import client from './api/client';
-import Layout from './containers/Layout';
+import App from './containers/App';
 
-import './app.css';
-
-const App = () => (
+render((
   <ApolloProvider client={client}>
-    <Layout />
+    <App />
   </ApolloProvider>
-);
-
-ReactDOM.render(<App />, document.getElementById('app'));
+), document.getElementById('app'));

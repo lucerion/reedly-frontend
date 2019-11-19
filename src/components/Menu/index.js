@@ -1,39 +1,56 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import MenuItem from './MenuItem';
 import Typography from '@material-ui/core/Typography';
 
-const Menu = ({ title, items, className, renderMenuItem }) => {
-  const header = <Typography component="div" variant="subtitle1">{title}</Typography>;
+export default class Menu extends PureComponent {
+  title() {
+    return (
+      <Typography component="div" variant="subtitle1" onClick={this.props.onTitleClick}>
+        {this.props.title}
+      </Typography>
+    );
+  }
 
-  const renderItem = (item) => <MenuItem title={item.title} key={item.id} />;
+  renderItems() {
+    return this.props.items.map((item) => this.renderItem(item));
+  }
 
-  const renderItems = (items) => items.map((item) => (renderMenuItem && renderMenuItem(item)) || renderItem(item));
+  renderItem(item) {
+    return (
+      <MenuItem
+        title={item.title}
+        key={item.id}
+        onClick={(event) => this.props.onMenuItemClick(event, item)}
+      />
+    );
+  }
 
-  return (
-    <List subheader={header} className={className}>
-      {renderItems(items)}
-    </List>
-  );
-};
+  render() {
+    return (
+      <List subheader={this.title()} className={this.props.className}>
+        {this.renderItems()}
+      </List>
+    );
+  }
+}
 
 const itemPropType = PropTypes.shape({
   id: PropTypes.number.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
 });
 
 Menu.propTypes = {
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       items: PropTypes.arrayOf(itemPropType),
     })
   ),
   className: PropTypes.string,
-  renderMenuItem: PropTypes.func,
+  onTitleClick: PropTypes.func,
+  onMenuItemClick: PropTypes.func,
 };
-
-export default Menu;

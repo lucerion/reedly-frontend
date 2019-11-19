@@ -8,24 +8,30 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import DropdownMenuItem from './DropdownMenuItem';
 
-const DropDownMenu = ({ title, items, className }) => {
+const renderItems = (items, onItemClick) => items.map((item) => renderItem(item, onItemClick));
+
+const renderItem = (item, onItemClick) => (
+  <DropdownMenuItem title={item.title} key={item.id} onClick={(event) => onItemClick(event, item)} />
+);
+
+const renderExpandIcon = (isOpen, onClick) => (
+  isOpen ? <ExpandLess onClick={onClick} /> : <ExpandMore onClick={onClick} />
+);
+
+const DropDownMenu = ({ title, items, className, onClick, onMenuItemClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
-  const renderItems = (items) => items.map(({ id, title }) => <DropdownMenuItem title={title} key={id} />);
-
-  const renderExpandIcon = (isOpen) => isOpen ? <ExpandLess /> : <ExpandMore />;
-
   return (
     <React.Fragment>
-      <ListItem button onClick={toggle}>
-        <ListItemText primary={title} />
-        {renderExpandIcon(isOpen)}
+      <ListItem button>
+        <ListItemText onClick={onClick} primary={title} />
+        {renderExpandIcon(isOpen, toggle)}
       </ListItem>
       <Collapse in={isOpen}>
         <List disablePadding className={className}>
-          {renderItems(items)}
+          {renderItems(items, onMenuItemClick)}
         </List>
       </Collapse>
     </React.Fragment>
@@ -41,6 +47,8 @@ DropDownMenu.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ),
+  onClick: PropTypes.func,
+  onMenuItemClick: PropTypes.func,
 };
 
 export default DropDownMenu;

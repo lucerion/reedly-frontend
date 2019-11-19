@@ -1,17 +1,13 @@
-import { useQuery } from '@apollo/react-hooks';
-import { LINKS_QUERY } from '../queries/links';
-import { groupByCategory } from '../helpers';
+import { LINKS_QUERY } from '../queries';
 
-const getLinks = () => {
+const getLinks = async ({ client, params }) => {
   const {
     data: {
-      links = [],
+      links,
     },
-  } = useQuery(LINKS_QUERY);
+  } = await client.query({ variables: params, query: LINKS_QUERY });
 
   return links;
 };
 
-const getLinksGroupedByCategory = () => groupByCategory(getLinks());
-
-export { getLinksGroupedByCategory };
+export { getLinks };

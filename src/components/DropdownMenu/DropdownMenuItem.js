@@ -10,14 +10,15 @@ const styles = {
   },
 };
 
-const DropdownMenuItem = ({ title }) => (
-  <ListItem button>
+const DropdownMenuItem = ({ title, onClick }) => (
+  <ListItem button onClick={onClick} >
     <ListItemText primary={title} primaryTypographyProps={styles.text} />
   </ListItem>
 );
 
 DropdownMenuItem.propTypes = {
   title: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default DropdownMenuItem;

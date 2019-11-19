@@ -1,36 +1,26 @@
 import React from 'react';
 import Menu from '../../components/Menu';
 import DropdownMenu from '../../components/DropdownMenu';
-import { getFeedsGroupedByCategory } from '../../api/actions/feeds';
-import { MENU_TITLES } from './constants';
 
-const FeedsMenu = () => {
-  const feeds = getFeedsGroupedByCategory();
-
-  const renderMenuItem = (item) => {
+export default class FeedsMenu extends Menu {
+  renderDropdownMenu(item) {
     const { id, title, items } = item;
 
-    if (items && items.length) {
-      return (
-        <DropdownMenu
-          className="submenu"
-          title={title}
-          items={items}
-          key={id}
-        />
-      );
-    }
-  };
+    return (
+      <DropdownMenu
+        className="submenu"
+        title={title}
+        items={items}
+        key={id}
+        onClick={(event) => this.props.onMenuItemClick(event, item)}
+        onMenuItemClick={this.props.onMenuItemClick}
+      />
+    );
+  }
 
-  return (
-    <Menu
-      className="menu"
-      title={MENU_TITLES.feeds}
-      items={feeds}
-      key="feeds"
-      renderMenuItem={renderMenuItem}
-    />
-  );
-};
+  renderItem(item) {
+    const { items } = item;
 
-export default FeedsMenu;
+    return items && items.length ? this.renderDropdownMenu(item) : super.renderItem(item);
+  }
+}
