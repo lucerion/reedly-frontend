@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from '../../components/Menu';
 import DropdownMenu from '../../components/DropdownMenu';
 
-export default class FeedsMenu extends Menu {
+class FeedsMenu extends Menu {
   renderDropdownMenu(item) {
     const { id, title, items } = item;
 
@@ -24,3 +24,5 @@ export default class FeedsMenu extends Menu {
     return items && items.length ? this.renderDropdownMenu(item) : super.renderItem(item);
   }
 }
+
+export default FeedsMenu;

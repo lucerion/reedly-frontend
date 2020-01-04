@@ -4,7 +4,7 @@ import List from '@material-ui/core/List';
 import MenuItem from './MenuItem';
 import Typography from '@material-ui/core/Typography';
 
-export default class Menu extends PureComponent {
+class Menu extends PureComponent {
   title() {
     return (
       <Typography component="div" variant="subtitle1" onClick={this.props.onTitleClick}>
@@ -54,3 +54,5 @@ Menu.propTypes = {
   onTitleClick: PropTypes.func,
   onMenuItemClick: PropTypes.func,
 };
+
+export default Menu;

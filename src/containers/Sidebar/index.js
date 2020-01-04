@@ -4,12 +4,16 @@ import Drawer from '@material-ui/core/Drawer';
 import { AppContext } from '../../contexts';
 import Menu from '../../components/Menu';
 import FeedsMenu from './FeedsMenu';
-import { MENU_TITLES } from './constants';
 import { groupByCategory } from '../../helpers';
 
 import './sidebar.css';
 
-const styles = {
+const MENU_TITLES = {
+  links: 'Links',
+  feeds: 'Feeds',
+};
+
+const MENU_STYLES = {
   drawer: {
     paper: 'content',
   },
@@ -50,7 +54,7 @@ const Sidebar = () => (
   <AppContext.Consumer>
     {({ isSidebarOpen, links, feeds, updateFeedEntries, updateLinks }) => (
       <Box className="sidebar" display={isSidebarOpen ? '' : 'none'}>
-        <Drawer variant="permanent" classes={styles.drawer}>
+        <Drawer variant="permanent" classes={MENU_STYLES.drawer}>
           {renderLinksMenu(links, updateLinks)}
           {renderFeedsMenu(feeds, updateFeedEntries)}
         </Drawer>
