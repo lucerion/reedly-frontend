@@ -1,7 +1,7 @@
 const APP_ACTIONS = {
   updateLinks: 'UPDATE_LINKS',
   updateFeeds: 'UPDATE_FEEDS',
-  updateFeedEntries: 'UPDATE_FEED_ENTRIES',
+  updateContent: 'UPDATE_CONTENT',
   toggleSidebar: 'TOGGLE_SIDEBAR',
 };
 
@@ -9,7 +9,7 @@ const updateLinks = (links) => ({ type: APP_ACTIONS.updateLinks, links });
 
 const updateFeeds = (feeds) => ({ type: APP_ACTIONS.updateFeeds, feeds });
 
-const updateFeedEntries = (feedEntries) => ({ type: APP_ACTIONS.updateFeedEntries, feedEntries });
+const updateContent = (content) => ({ type: APP_ACTIONS.updateContent, content });
 
 const toggleSidebar = () => ({ type: APP_ACTIONS.toggleSidebar });
 
@@ -17,6 +17,6 @@ export {
   APP_ACTIONS,
   updateLinks,
   updateFeeds,
-  updateFeedEntries,
+  updateContent,
   toggleSidebar,
 };

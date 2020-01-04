@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { AppContext } from '../contexts';
 import { getFeedEntries, getLinks, getFeeds } from '../api/actions';
 import { appReducer } from '../reducers';
-import { toggleSidebar, updateLinks, updateFeeds, updateFeedEntries } from '../actions';
+import { toggleSidebar, updateLinks, updateFeeds, updateContent } from '../actions';
 
 const INITIAL_STATE = {
   links: [],
   feeds: [],
-  feedEntries: [],
+  content: [],
   isSidebarOpen: true,
 };
 
@@ -19,22 +19,22 @@ const AppProvider = ({ children }) => {
     (async () => {
       dispatch(updateLinks(await getLinks()));
       dispatch(updateFeeds(await getFeeds()));
-      dispatch(updateFeedEntries(await getFeedEntries()));
+      dispatch(updateContent(await getFeedEntries()));
     })();
   }, []);
 
-  const { isSidebarOpen, links, feeds, feedEntries } = state;
+  const { isSidebarOpen, links, feeds, content } = state;
 
   const value = {
     isSidebarOpen,
     toggleSidebar: () => dispatch(toggleSidebar()),
     links,
     feeds,
-    feedEntries,
+    content,
     updateFeedEntries: (params) => {
-      getFeedEntries(params).then((feedEntries) => dispatch(updateFeedEntries(feedEntries)));
+      getFeedEntries(params).then((feedEntries) => dispatch(updateContent(feedEntries)));
     },
-    updateLinks: (params) => getLinks(params).then((links) => dispatch(updateLinks(links))),
+    updateLinks: (params) => getLinks(params).then((links) => dispatch(updateContent(links))),
   };
 
   return (

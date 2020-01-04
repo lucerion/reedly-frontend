@@ -5,15 +5,22 @@ import { AppContext } from '../../contexts';
 
 import './content.css';
 
-const renderItem = (item) => <Item label={item.feed.title} title={item.title} content={item.content} key={item.id} />;
+const renderItem = (item) => (
+  <Item
+    label={item.feed && item.feed.title}
+    title={item.title}
+    content={item.content}
+    key={item.id}
+  />
+);
 
 const renderItems = (items) => items.map((item) => renderItem(item));
 
 const Content = () => (
   <AppContext.Consumer>
-    {({feedEntries}) => (
+    {({content}) => (
       <Box flex={1} className="content">
-        {renderItems(feedEntries)}
+        {renderItems(content)}
       </Box>
     )}
   </AppContext.Consumer>

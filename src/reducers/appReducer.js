@@ -1,8 +1,8 @@
 import { APP_ACTIONS } from '../actions';
 
 const appReducer = (state, action) => {
-  const { toggleSidebar, updateLinks, updateFeeds, updateFeedEntries } = APP_ACTIONS;
-  const { type, links, feeds, feedEntries } = action;
+  const { toggleSidebar, updateLinks, updateFeeds, updateContent } = APP_ACTIONS;
+  const { type, links, feeds, content } = action;
   const { isSidebarOpen } = state;
 
   switch (type) {
@@ -10,8 +10,8 @@ const appReducer = (state, action) => {
     return { ...state, links };
   case updateFeeds:
     return { ...state, feeds };
-  case updateFeedEntries:
-    return { ...state, feedEntries };
+  case updateContent:
+    return { ...state, content };
   case toggleSidebar:
     return { ...state, isSidebarOpen: !isSidebarOpen };
   default:

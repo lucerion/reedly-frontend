@@ -3,5 +3,5 @@ export {
   toggleSidebar,
   updateLinks,
   updateFeeds,
-  updateFeedEntries,
+  updateContent,
 } from './app';
