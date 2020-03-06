@@ -3,7 +3,7 @@
 Reedly UI
 
 
-## Install
+## Installation
 
     yarn install
 
