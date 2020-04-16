@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Reedly UI",
   "repository": "https://github.com/lucerion/reedly-frontend",
-  "license": "BSD-3-Clause",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
