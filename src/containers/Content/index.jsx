@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Item from './Item';
-import { AppContext } from '../../contexts';
+import { AppConsumer } from '../../store';
 
 import './content.css';
 
@@ -17,13 +17,13 @@ const renderItem = (item) => (
 const renderItems = (items) => items.map((item) => renderItem(item));
 
 const Content = () => (
-  <AppContext.Consumer>
+  <AppConsumer>
     {({content}) => (
       <Box flex={1} className="content">
         {renderItems(content)}
       </Box>
     )}
-  </AppContext.Consumer>
+  </AppConsumer>
 );
 
 export default Content;

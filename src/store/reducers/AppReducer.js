@@ -1,6 +1,6 @@
 import { APP_ACTIONS } from '../actions';
 
-const appReducer = (state, action) => {
+const AppReducer = (state, action) => {
   const { toggleSidebar, updateLinks, updateFeeds, updateContent } = APP_ACTIONS;
   const { type, links, feeds, content } = action;
   const { isSidebarOpen } = state;
@@ -19,4 +19,4 @@ const appReducer = (state, action) => {
   }
 };
 
-export default appReducer;
+export default AppReducer;

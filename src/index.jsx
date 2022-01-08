@@ -1,11 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ApolloProvider } from '@apollo/react-hooks';
-import client from './api/client';
 import App from './containers/App';
+import { ApiProvider } from './store';
 
 render((
-  <ApolloProvider client={client}>
+  <ApiProvider>
     <App />
-  </ApolloProvider>
+  </ApiProvider>
 ), document.getElementById('app'));

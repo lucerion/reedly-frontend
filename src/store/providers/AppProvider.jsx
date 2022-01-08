@@ -1,8 +1,8 @@
 import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { AppContext } from '../contexts';
-import { getFeedEntries, getLinks, getFeeds } from '../api/actions';
-import { appReducer } from '../reducers';
+import { getFeedEntries, getLinks, getFeeds } from '../../api/actions';
+import { AppReducer } from '../reducers';
 import { toggleSidebar, updateLinks, updateFeeds, updateContent } from '../actions';
 
 const INITIAL_STATE = {
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 };
 
 const AppProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(appReducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer(AppReducer, INITIAL_STATE);
 
   useEffect(() => {
     (async () => {

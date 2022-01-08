@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
-import { AppContext } from '../../contexts';
+import { AppConsumer } from '../../store';
 import Menu from '../../components/Menu';
 import FeedsMenu from './FeedsMenu';
 import { groupByCategory } from '../../helpers';
@@ -51,7 +51,7 @@ const renderFeedsMenu = (feeds, updateFeedEntries) => {
 };
 
 const Sidebar = () => (
-  <AppContext.Consumer>
+  <AppConsumer>
     {({ isSidebarOpen, links, feeds, updateFeedEntries, updateLinks }) => (
       <Box className="sidebar" display={isSidebarOpen ? '' : 'none'}>
         <Drawer variant="permanent" classes={MENU_STYLES.drawer}>
@@ -60,7 +60,7 @@ const Sidebar = () => (
         </Drawer>
       </Box>
     )}
-  </AppContext.Consumer>
+  </AppConsumer>
 );
 
 export default Sidebar;
